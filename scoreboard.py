@@ -33,3 +33,6 @@ class Scoreboard(Turtle):
                 data.write(f"{self.high_score}")
         self.score = 0
         self.update_score()
+
+    def game_closed(self):
+        self.goto(0, 0)

@@ -16,3 +16,6 @@ class Food(Turtle):
         random_x = random.randint(-250, 250)
         random_y = random.randint(-250, 250)
         self.goto(random_x, random_y)
+
+    def remove_food(self):
+        self.goto(1000, 1000)

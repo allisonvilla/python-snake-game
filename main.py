@@ -22,9 +22,13 @@ def game_end():
     snake.reset_snake()
 
 
-def game_off():
+def game_closed():
     global game_is_on
     game_is_on = False
+    food.remove_food()
+    snake.remove_snake()
+    screen.update()
+    scoreboard.game_closed()
 
 
 screen.listen()
@@ -32,7 +36,7 @@ screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
-screen.onkey(game_off, "Escape")
+screen.onkey(game_closed, "Escape")
 
 while game_is_on:
     screen.update()
