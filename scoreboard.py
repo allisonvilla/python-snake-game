@@ -25,13 +25,17 @@ class Scoreboard(Turtle):
         self.score += 1
         self.display_score()
 
-    def reset_game(self):
+    def store_high_score(self):
         if self.score > self.current_high_score:
             self.current_high_score = self.score
+
+    def reset_game(self):
+        self.store_high_score()
         self.score = 0
         self.display_score()
 
     def game_closed(self):
+        self.store_high_score()
         self.goto(1000, 1000)
 
     def get_high_score(self):
