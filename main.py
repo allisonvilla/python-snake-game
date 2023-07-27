@@ -2,6 +2,7 @@ from turtle import Screen
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
+from leaderboard import Leaderboard
 import time
 
 screen = Screen()
@@ -9,10 +10,12 @@ screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("🐍 Baby's First Video Game 🐍")
 screen.tracer(0, 0)
+player_name = screen.textinput("Enter your name", "Name: ")
 
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
+leaderboard = Leaderboard()
 
 game_is_on = True
 
@@ -29,6 +32,8 @@ def game_closed():
     snake.remove_snake()
     screen.update()
     scoreboard.game_closed()
+    leaderboard.update_leaderboard(player_name, scoreboard.get_high_score())
+    leaderboard.display_leaderboard()
 
 
 screen.listen()
@@ -47,7 +52,7 @@ while game_is_on:
     if snake.head.distance(food) < 15:
         food.move_food()
         snake.grow_snake()
-        scoreboard.update_score()
+        scoreboard.increase_score()
 
     # Detect collision with wall
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
