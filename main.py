@@ -10,7 +10,9 @@ screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("🐍 Baby's First Video Game 🐍")
 screen.tracer(0, 0)
-player_name = screen.textinput("Enter your name", "Name: ")
+
+player_name_input = screen.textinput("Enter your name", "Name: ")
+player_name = player_name_input if player_name_input else "A girl has no name"
 
 snake = Snake()
 food = Food()
@@ -34,6 +36,7 @@ def game_closed():
     scoreboard.game_closed()
     leaderboard.update_leaderboard(player_name, scoreboard.get_high_score())
     leaderboard.display_leaderboard()
+    screen.onkey(None, "Escape")
 
 
 screen.listen()
